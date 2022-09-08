@@ -27,7 +27,7 @@ export default function ListTask() {
               <p className="ml-2">Marco Doubbled</p>
             </div>
             <div className="flex space-x-4 text-[#006191] justify-end mr-5">
-              <Link to={"/edit"}>
+              <Link to={"/edit/task/1"}>
                 <EditIcon fontSize="small" />
               </Link>
               <button>
@@ -36,9 +36,9 @@ export default function ListTask() {
             </div>
           </div>
           <div className="w-full text-right mt-5">
-              <button className="bg-[#006191] p-2 text-white rounded-full">
-                Agregar
-              </button>
+              <Link to="/addtask/1" className="bg-[#006191] p-2 text-white rounded-full">
+                Agregar tarea
+              </Link>
             </div>
         </div>
       </div>

@@ -2,11 +2,11 @@ import React from "react";
 import { InputBase } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Form() {
+export default function FormUser() {
   const [contact, setContact] = React.useState("");
-  let location = useLocation();
-  let pathName = location.pathname;
-  console.log(pathName)
+  const location = useLocation();
+  const pathName = location.pathname;
+  console.log(pathName);
 
   const handleChange = (event) => {
     setContact(event.target.value);

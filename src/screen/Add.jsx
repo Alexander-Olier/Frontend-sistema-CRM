@@ -1,10 +1,10 @@
 import React from "react";
-import Form from "../components/Form";
+import FormUser from "../components/FormUser";
 
 export default function Add() {
   return (
     <div>
-      <Form />
+      <FormUser />
     </div>
   );
 }
