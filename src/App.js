@@ -11,9 +11,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/user/:id" element={<User/>}/>
         <Route path="/add" element={<AddUser />} />
-        <Route path="/edit" element={<AddUser />} />
-        <Route path="/task/:id" element={<User />} />
+        <Route path="/edit/:id" element={<AddUser />} />
         <Route path="/addtask/:id" element={<FormTask/>}/>
         <Route path="/edit/task/:id" element={<FormTask />} />
       </Routes>

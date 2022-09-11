@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import ListComentarios from "./ListComentarios";
-export default function Comentario() {
+export default function Comentario({id}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
