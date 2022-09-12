@@ -14,7 +14,7 @@ import SearchIcon from "@mui/icons-material/Search";
 export default function Cards() {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.usersState);
-  const [ search, setSearch ] =React.useState("")
+  const [search, setSearch] = React.useState("");
 
   const { users } = userState;
 
@@ -26,13 +26,16 @@ export default function Cards() {
     console.log(id);
     dispatch(deleteUser(id));
   };
-  
+
   const handleSearch = (e) => {
-    setSearch(e.target.value)
+    setSearch(e.target.value);
   };
 
-  const results = !search ? users : users.filter((dato)=> dato.nombre.toLowerCase().includes(search.toLocaleLowerCase()))
-
+  const results = !search
+    ? users
+    : users.filter((dato) =>
+        dato.nombre.toLowerCase().includes(search.toLocaleLowerCase())
+      );
 
   return (
     <div className="lg:container mx-10 ">
@@ -59,11 +62,11 @@ export default function Cards() {
                   <span className="text-[#046392]">(+57) {user.cel}</span>
                 </div>
               </Link>
-              <div className="flex ml-auto space-x-4 text-[#006191]">
+              <div className="flex ml-auto space-x-4 text-[#006191] items-center">
                 <Link to={`/edit/${index}`}>
                   <EditIcon />
                 </Link>
-                <Link to={`/task/1`}>
+                <Link to={`/addtask/${index}`}>
                   <AddTaskIcon />
                 </Link>
                 <button onClick={() => handleDelete(index)}>

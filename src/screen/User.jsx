@@ -7,7 +7,7 @@ import Task from "../components/Task";
 export default function User() {
   const { id } = useParams();
   return (
-    <div className="container m-auto">
+    <div className="container mx-auto">
       <UserOne id={id}/>
       <Comentario/>
       <Task />
