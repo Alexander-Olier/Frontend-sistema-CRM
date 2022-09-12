@@ -26,15 +26,11 @@ export default function FormUser() {
   const onFechaChange = (e) => setFecha(e.target.value);
   const onDireccionChange = (e) => setDireccion(e.target.value);
 
-
-
-
-
   const contacto = {
     nombre: nombre,
     apellido: apellido,
     mail: mail,
-    cel:cel,
+    cel: cel,
     fecha: fecha,
     direccion: direccion,
     contact: contact,
@@ -53,10 +49,10 @@ export default function FormUser() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(userAdd(contacto)) 
-    navigate("/") 
+    dispatch(userAdd(contacto));
+    navigate("/");
   };
-  
+
   return (
     <div className="lg:container mx-10 mt-2">
       <h1 className="text-xl text-[#006191] font-bold">
@@ -112,8 +108,9 @@ export default function FormUser() {
               className="rounded-3xl text-[#a2a2a2] p-0 pl-2 lg:p-2"
               value={contact}
               onChange={handleChange}
+              defaultValue={"DEFAULT"}
             >
-              <option hidden selected>
+              <option value="DEFAULT" disable="true" >
                 Tipo de contacto
               </option>
               <option value={"Cliente"}>Cliente</option>
@@ -121,10 +118,11 @@ export default function FormUser() {
             </select>
             <select
               className="rounded-3xl text-[#a2a2a2] p-0 pl-2 lg:p-2"
-              value={contact}
+              value={origen}
               onChange={handleChange1}
+              defaultValue={"DEFAULT"}
             >
-              <option hidden selected>
+              <option value="DEFAULT" disable="true">
                 Origen
               </option>
               <option value={"Origen1"}>Origen1</option>

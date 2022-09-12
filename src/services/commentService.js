@@ -5,7 +5,8 @@ const getAll = (id) => {
 };
 
 const create = (body) => {
-  return http.post("/comment/add", body);
+  console.log(body)
+  return http.post(`/comment/add/${body.id}`, body);
 };
 const update = (id, body) => {
   return http.post("/comment/update", body);

@@ -5,13 +5,28 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import ListComentarios from "./ListComentarios";
-export default function Comentario({id}) {
+import { useDispatch } from "react-redux";
+import { CommentAdd } from "../features/comments/commentSlice";
+import { useParams } from "react-router-dom";
+export default function Comentario() {
+  const dispatch = useDispatch();
+  const [body, setBody] = React.useState("");
+  const params = useParams();
+
+  const onBodyChange = (e) => setBody(e.target.value);
+
+  const comentario = { id: params.id, body: body };
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(CommentAdd(comentario));
+  };
   return (
     <div className="mt-5 overflow-y-auto">
       <Accordion
@@ -34,17 +49,24 @@ export default function Comentario({id}) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <textarea
-            rows="5"
-            placeholder="Agregar un comentario"
-            className="w-full outline-slate-400 rounded-xl p-2"
-          />
-          <div className="w-full text-right">
-            <button className="bg-[#006191] p-2 text-white rounded-full">
-              Agregar
-            </button>
-          </div>
-          <ListComentarios/>
+          <form onSubmit={handleSubmit}>
+            <textarea
+              rows="5"
+              placeholder="Agregar un comentario"
+              className="w-full outline-slate-400 rounded-xl p-2"
+              value={body}
+              onChange={onBodyChange}
+            />
+            <div className="w-full text-right">
+              <button
+                onSubmit={handleSubmit}
+                className="bg-[#006191] p-2 text-white rounded-full"
+              >
+                Agregar
+              </button>
+            </div>
+          </form>
+          <ListComentarios />
         </AccordionDetails>
       </Accordion>
     </div>

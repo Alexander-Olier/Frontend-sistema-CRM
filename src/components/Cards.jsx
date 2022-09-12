@@ -6,12 +6,16 @@ import { Link } from "react-router-dom";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { deleteUser, getUsers } from "../features/users/userSlice";
+import { IconButton, InputBase } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function Cards() {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.usersState);
+  const [ search, setSearch ] =React.useState("")
+
   const { users } = userState;
 
   useEffect(() => {
@@ -19,21 +23,42 @@ export default function Cards() {
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    console.log(id)
-    dispatch(deleteUser(id))
+    console.log(id);
+    dispatch(deleteUser(id));
   };
+  
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  };
+
+  const results = !search ? users : users.filter((dato)=> dato.nombre.toLowerCase().includes(search.toLocaleLowerCase()))
+
+
   return (
-    <div className="lg:container mx-10 mt-10">
+    <div className="lg:container mx-10 ">
+      <div className="flex justify-center items-center w-full mt-5 mb-10">
+        <div className="bg-[#f6f6f6] p-2 pl-5 rounded-full">
+          <InputBase
+            placeholder="Buscar"
+            value={search}
+            onChange={handleSearch}
+          />
+          <IconButton>
+            <SearchIcon style={{ color: "#006191" }} />
+          </IconButton>
+        </div>
+      </div>
       <h1 className="text-xl text-[#006191] font-bold">Lista de contactos</h1>
       <div className="w-full max-h-96 p-5 bg-[#f6f6f6] rounded-lg	 overflow-y-auto divide-y-2 divide-white">
-        {users &&
-          users.map((user, index) => (
-            <Link to={`/user/${index}`}>
+        {results &&
+          results.map((user, index) => (
             <div className="flex" key={index}>
-              <div className="">
-                <h1 className="font-bold">{user.nombre}</h1>
-                <span className="text-[#046392]">(+57) {user.cel}</span>
-              </div>
+              <Link to={`/user/${index}`}>
+                <div className="">
+                  <h1 className="font-bold">{user.nombre}</h1>
+                  <span className="text-[#046392]">(+57) {user.cel}</span>
+                </div>
+              </Link>
               <div className="flex ml-auto space-x-4 text-[#006191]">
                 <Link to={`/edit/${index}`}>
                   <EditIcon />
@@ -46,7 +71,6 @@ export default function Cards() {
                 </button>
               </div>
             </div>
-            </Link>
           ))}
       </div>
       <div className="w-full text-center mt-10">

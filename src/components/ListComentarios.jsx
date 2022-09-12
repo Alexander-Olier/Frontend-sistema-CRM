@@ -12,11 +12,11 @@ export default function ListComentarios() {
   const dispatch = useDispatch();
   const commentState = useSelector((state) => state.commentState);
 
-  const {comments} = commentState;
+  const { comments } = commentState;
 
   useEffect(() => {
     dispatch(getComments(id));
-  }, [dispatch, id]);
+  }, [dispatch, id],);
   return (
     <div>
       <div className="flex">
@@ -24,27 +24,26 @@ export default function ListComentarios() {
           <CommentIcon></CommentIcon>
         </div>
         <div className="w-full">
-          {comments && comments.map((comments, index)=>(
-            <div>
-          <div className="flex w-full">
-            <h4>Comentario {index+1}</h4>
-            <p className="ml-auto">10/03/2022 4:30PM</p>
-          </div>
-          <div className="w-full h-content bg-[#fff]">
-            <p className="p-5">{comments.body}</p>
-            <div className="flex space-x-4 text-[#006191] justify-end mr-5">
-              <Link to={"/edit"}>
-                <EditIcon fontSize="small" />
-              </Link>
-              <button>
-                <DeleteIcon fontSize="small" />
-              </button>
-            </div>
-          </div>
-          </div>
-         ))}
-          
-          <p className="mt-5 text-center">No hay más comentarios</p>
+          {comments &&
+            comments.map((comments, index) => (
+              <div>
+                <div className="flex w-full">
+                  <h4>Comentario {index + 1}</h4>
+                  <p className="ml-auto">10/03/2022 4:30PM</p>
+                </div>
+                <div className="w-full h-content bg-[#fff]">
+                  <p className="p-5">{comments.body}</p>
+                  <div className="flex space-x-4 text-[#006191] justify-end mr-5">
+                    <Link to={"/edit"}>
+                      <EditIcon fontSize="small" />
+                    </Link>
+                    <button>
+                      <DeleteIcon fontSize="small" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>
